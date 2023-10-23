@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       ..copyWith(
         textTheme: Theme.of(context).textTheme..apply(fontFamily: 'Inter')
       ),
-      initialRoute: Routes.home,
+      initialRoute: Routes.login,
       routes: {
         Routes.home: (context) => const HomePage(),
         Routes.login: (context) => const LoginPage(),

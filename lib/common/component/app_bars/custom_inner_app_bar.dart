@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 import '../../sistem/colors.dart';
 class CustomInnerAppBar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -14,19 +15,17 @@ class CustomInnerAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(title),
       backgroundColor: Colors.transparent,
-      leading:IconButton(
+      leading: IconButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                     side: BorderSide(color: CustomColors.light),
                   )
               )
           ),
-          onPressed: (){
-            Navigator.of(context).pop();
-          }, icon: const Icon(Icons.chevron_left)
+          onPressed: (){Navigator.of(context).pop();}, icon: const Icon(Icons.chevron_left)
       ),
       actions: [
         IconButton(
@@ -34,7 +33,7 @@ class CustomInnerAppBar extends StatelessWidget implements PreferredSizeWidget {
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
                       side: BorderSide(color: CustomColors.light),
                     )
                 )
@@ -47,5 +46,6 @@ class CustomInnerAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize =>Size.fromHeight(60);
+  Size get preferredSize => Size.fromHeight(60);
 }
+

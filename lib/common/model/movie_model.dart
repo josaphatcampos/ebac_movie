@@ -31,21 +31,40 @@ class Movie {
   double voteAverage;
   int voteCount;
 
-  Movie(
-      {required this.adult,
-      required this.backdropPath,
-      required this.genreIds,
-      required this.id,
-      required this.originalLanguage,
-      required this.originalTitle,
-      required this.overview,
-      required this.popularity,
-      required this.posterPath,
-      required this.releaseDate,
-      required this.title,
-      required this.video,
-      required this.voteAverage,
-      required this.voteCount});
+  Movie({required this.adult,
+    required this.backdropPath,
+    required this.genreIds,
+    required this.id,
+    required this.originalLanguage,
+    required this.originalTitle,
+    required this.overview,
+    required this.popularity,
+    required this.posterPath,
+    required this.releaseDate,
+    required this.title,
+    required this.video,
+    required this.voteAverage,
+    required this.voteCount});
+
+
+  factory Movie.fromMovie(){
+    return Movie(adult: false,
+        backdropPath: "",
+        genreIds:  <dynamic>[],
+        id: 0,
+        originalLanguage: "",
+        originalTitle: "",
+        overview: "",
+        popularity: 0.0,
+        posterPath: "",
+        releaseDate: "",
+        title: "",
+        video: false,
+        voteAverage:0,
+        voteCount: 0);
+  }
+
+
 
   Map<String, dynamic> toMap() {
     return {
@@ -71,14 +90,14 @@ class Movie {
       adult: map['adult'] ?? false,
       backdropPath: map['backdrop_path'] ?? '',
       genreIds: map['genre_ids'] ?? <dynamic>[],
-      id: map['id']  ?? 0,
-      originalLanguage: map['original_language']  ?? '',
-      originalTitle: map['original_title']  ?? '',
-      overview: map['overview']  ?? '',
+      id: map['id'] ?? 0,
+      originalLanguage: map['original_language'] ?? '',
+      originalTitle: map['original_title'] ?? '',
+      overview: map['overview'] ?? '',
       popularity: double.parse("${map['popularity']}") ?? 0.0,
-      posterPath: map['poster_path']  ?? '',
-      releaseDate: map['release_date']  ?? '',
-      title: map['title']  ?? '',
+      posterPath: map['poster_path'] ?? '',
+      releaseDate: map['release_date'] ?? '',
+      title: map['title'] ?? '',
       video: map['video'] ?? false,
       voteAverage: double.parse("${map['vote_average']}") ?? 0.0,
       voteCount: map['vote_count'] ?? 0,

@@ -1,23 +1,59 @@
-class Utils{
+import 'dart:convert';
+
+import 'package:pre_projeto/common/model/user_model.dart';
+import 'package:pre_projeto/common/sistem/values.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class Utils {
   Utils._();
 
-  static const Map<String, String> apikey = {'api_key':'85de12ec6e2152dfe3b789600277fe2e', 'language':'pt-BR'};
+  static const Map<String, String> apikey = {
+    'api_key': '85de12ec6e2152dfe3b789600277fe2e',
+    'language': 'pt-BR',
+    'region': 'BR'
+  };
 
   static const String movieApiBaseUrl = 'api.themoviedb.org';
   static const String movieApiMovieUrl = '/3/movie';
   static const String movieApiPopularUrl = '$movieApiMovieUrl/popular';
+  static const String movieApiTopUrl = '$movieApiMovieUrl/top_rated';
+  static const String movieApiUpcomingUrl = '$movieApiMovieUrl/upcoming';
+  static const String movieApiNowInTheatUrl = '$movieApiMovieUrl/now_playing';
   static const String movieApiImageUrl = 'https://image.tmdb.org/t/p/w500';
-  static const String movieApiOriginalUrl = 'https://image.tmdb.org/t/p/original';
+  static const String movieApiOriginalUrl ='https://image.tmdb.org/t/p/original';
 
   static const int movieGenreAction = 28;
   static const int movieGenreAdventure = 12;
   static const int movieGenreComedy = 35;
 
+  static User? globalUser;
 
+  static String getFormatNumber(int value) {
+    int convert = value ?? 0;
 
+    if (convert > 999999) {
+      return "+${(convert / 1000000).toStringAsFixed(1)}M"
+          .replaceAll(".0", "")
+          .replaceAll(".", ",");
+    } else if (convert > 9999) {
+      return "+${(convert / 1000).toStringAsFixed(1)}K"
+          .replaceAll(".0", "")
+          .replaceAll(".", ",");
+    }
 
+    return "$convert";
+  }
 
-
+  static Future<bool> checkAlreadyLogged() async {
+    final prefs = await SharedPreferences.getInstance();
+    try{
+      String? userString = await prefs.getString(CustomValues.userkey);
+      globalUser = User.fromMap(jsonDecode(userString!));
+      return globalUser!.nickName.isNotEmpty;
+    }catch(e){
+      return false;
+    }
+  }
 }
 
 // {

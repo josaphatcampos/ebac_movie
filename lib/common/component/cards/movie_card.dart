@@ -96,7 +96,7 @@ class MovieCard extends StatelessWidget {
                             fontSize: movie.title.length > 7 ? 22: 32,
                             fontWeight: FontWeight.bold,
                             color: CustomColors.light,
-                            shadows: [
+                            shadows: const [
                               Shadow(
                                   // bottomLeft
                                   offset: Offset(-1.5, -1.5),

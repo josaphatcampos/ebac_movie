@@ -34,6 +34,8 @@ class _LoginPageState extends State<LoginPage>
     _controller = LoginController();
 
     _controller.animationController = AnimationController(vsync: this);
+
+    verifyLogged();
   }
 
   @override
@@ -166,10 +168,15 @@ class _LoginPageState extends State<LoginPage>
 
   void goToHome() async {
     if (await _controller.tryLogin()) {
-      // Navigator.of(context).pushReplacementNamed(Routes.home);
-      CustomAlert.showMessage(context, 'Usuário Logado com Sucesso!');
+      Navigator.of(context).pushReplacementNamed(Routes.home);
     }else{
       CustomAlert.errorMessage(context, 'Usuário ou Senha incorretos!');
+    }
+  }
+
+  Future<void> verifyLogged() async {
+    if(await _controller.getKeepLogged()){
+      Navigator.of(context).pushReplacementNamed(Routes.home);
     }
   }
 }
