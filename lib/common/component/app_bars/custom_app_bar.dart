@@ -3,7 +3,6 @@ import 'package:pre_projeto/common/component/app_bars/controllers/custom_app_bar
 import 'package:pre_projeto/common/component/inputs/custom_text_search.dart';
 
 import '../../sistem/colors.dart';
-import '../inputs/custom_text_input.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

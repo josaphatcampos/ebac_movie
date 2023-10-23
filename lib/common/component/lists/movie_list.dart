@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pre_projeto/common/model/catalog_model.dart';
 import 'package:pre_projeto/common/sistem/routes.dart';
-import 'package:pre_projeto/common/sistem/utils.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../model/movie_model.dart';
 import '../../sistem/colors.dart';
@@ -36,6 +36,7 @@ class MovieList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 Movie movie = catalog.movies[index];
+                var tag = Uuid().v4();
                 return  Padding(
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Column(
@@ -51,8 +52,12 @@ class MovieList extends StatelessWidget {
                         height: 160,
                         rounded: 18,
                         function: (){
-                          Navigator.of(context).pushNamed(Routes.movieDetail, arguments: movie.id);
-                        },
+                          Map<String,dynamic> params = {
+                            CustomValues.movieIdParam : movie.id,
+                            CustomValues.tagParam : tag
+                          };
+                          Navigator.of(context).pushNamed(Routes.movieDetail, arguments: params);
+                        }, tag: tag,
                       ),
                       const SizedBox(height: 2,),
                       SizedBox(width: 129, child: Text(movie.title, maxLines: 1, style: const TextStyle(fontSize: 12),)),

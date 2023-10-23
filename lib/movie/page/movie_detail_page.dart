@@ -22,6 +22,7 @@ class MovieDetailPage extends StatefulWidget {
 class _MovieDetailPageState extends State<MovieDetailPage> {
   final MovieDetailController _movieDetailController = MovieDetailController();
   int movieId = 0;
+  String tag = "";
 
   @override
   void initState() {
@@ -33,8 +34,18 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 
   @override
+  void dispose() {
+    _movieDetailController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    movieId = ModalRoute.of(context)!.settings.arguments as int;
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    movieId =arguments[CustomValues.movieIdParam] as int;
+    tag = arguments[CustomValues.tagParam] as String;
+
+    print(tag.toString());
 
     return Container(
       decoration: const BoxDecoration(
@@ -75,15 +86,18 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: CustomColors.lightNavy,
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                '${Utils.movieApiImageUrl}${_movieDetailController.movie.posterPath}'),
-                                            fit: BoxFit.cover)),
-                                    height: 300,
-                                    width: 200,
+                                  Hero(
+                                    tag: tag,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: CustomColors.lightNavy,
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  '${Utils.movieApiImageUrl}${_movieDetailController.movie.posterPath}'),
+                                              fit: BoxFit.cover)),
+                                      height: 300,
+                                      width: 200,
+                                    ),
                                   ),
                                   SizedBox(
                                     width:
@@ -161,7 +175,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             ),
                           ),
                           Text(
-                            _movieDetailController.movie.overview,
+                            _movieDetailController.movie.overview.isNotEmpty?
+                            _movieDetailController.movie.overview:"Ainda não possui sinopse",
                             style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,

@@ -5,7 +5,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pre_projeto/common/model/catalog_model.dart';
 import 'package:pre_projeto/common/services/repositories/movie_repository.dart';
-
+import 'package:uuid/uuid.dart';
 import '../../common/model/movie_model.dart';
 
 class HomeController{
@@ -14,6 +14,8 @@ class HomeController{
   Catalog topMovies = Catalog(movies: []);
   Catalog moviesInTheatre = Catalog(movies: []);
   Catalog upcommingMovies = Catalog(movies: []);
+
+  var uuid = const Uuid();
 
   List<Movie> banner = [];
 
@@ -28,6 +30,10 @@ class HomeController{
     getTopMovies();
     getUpcomming();
     getInTheatre();
+
+
+    print(uuid.v4());
+    print(uuid.v4());
   }
 
   void dispose(){

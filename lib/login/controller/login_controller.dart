@@ -9,7 +9,7 @@ import 'package:pre_projeto/common/sistem/values.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController{
-   LoginRepository _loginRepository = LoginRepository();
+   final LoginRepository _loginRepository = LoginRepository();
    late AnimationController animationController;
 
    TextEditingController usercontroller = TextEditingController();

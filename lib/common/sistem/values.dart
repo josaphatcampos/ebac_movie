@@ -6,4 +6,8 @@ class CustomValues{
   static double marginComponent = 24.0;
 
   static String userkey = 'userLogged';
+
+
+  static String movieIdParam = "movieId";
+  static String tagParam = "tag";
 }
