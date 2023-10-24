@@ -80,5 +80,3 @@ class MovieRepository{
     return MovieDetail.fromMap(map);
   }
 }
-//https://api.themoviedb.org/3/movie/search/collection?query=bar&api_key=85de12ec6e2152dfe3b789600277fe2e&language=pt-BR&region=BR
-//https://api.themoviedb.org/3/search/collection?query=fa&include_adult=false&language=en-US&page=1&api_key=85de12ec6e2152dfe3b789600277fe2e

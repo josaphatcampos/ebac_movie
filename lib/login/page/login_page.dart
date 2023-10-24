@@ -1,11 +1,7 @@
-import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pre_projeto/common/component/alerts/custom_alert.dart';
 import 'package:pre_projeto/common/component/buttons/custom_button.dart';
-import 'package:pre_projeto/common/component/buttons/custom_outline_button.dart';
 import 'package:pre_projeto/common/component/inputs/custom_text_input.dart';
 import 'package:pre_projeto/common/sistem/animaitons.dart';
 import 'package:pre_projeto/common/sistem/colors.dart';

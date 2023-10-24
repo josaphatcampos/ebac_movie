@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:pre_projeto/common/model/user_model.dart';
 import 'package:pre_projeto/common/services/repositories/login_repository.dart';
 import 'package:pre_projeto/common/sistem/utils.dart';
 import 'package:pre_projeto/common/sistem/values.dart';

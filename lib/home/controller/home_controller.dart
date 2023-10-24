@@ -26,7 +26,6 @@ class HomeController extends CustomControllerContract {
   ValueNotifier<int> carouselPage = ValueNotifier<int>(0);
   ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
   ValueNotifier<bool> isSearch = ValueNotifier<bool>(false);
-  // ValueNotifier<bool> isFindSearch = ValueNotifier<bool>(false);
   ValueNotifier<int> change = ValueNotifier<int>(0);
   ValueNotifier<String> searchterm = ValueNotifier<String>("");
 
@@ -50,7 +49,6 @@ class HomeController extends CustomControllerContract {
     carouselPage.dispose();
     isLoading.dispose();
     isSearch.dispose();
-    // isFindSearch.dispose();
     searchterm.dispose();
   }
 

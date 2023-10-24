@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 /// adult : false
 /// backdrop_path : "/mRGmNnh6pBAGGp6fMBMwI8iTBUO.jpg"
 /// genre_ids : [27,9648,53]

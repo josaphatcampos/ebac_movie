@@ -6,9 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Utils {
   Utils._();
-
+  //https://www.themoviedb.org
   static const Map<String, String> apikey = {
-    'api_key': '85de12ec6e2152dfe3b789600277fe2e',
+    'api_key': '',
     'language': 'pt-BR',
     'region': 'BR'
   };

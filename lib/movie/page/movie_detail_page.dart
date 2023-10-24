@@ -233,7 +233,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               CustomButton(
                                   title: "Abrir no IMDB",
                                   onPressed: () async {
-                                    // https://www.imdb.com/title/
                                     var url = Uri.parse(
                                         "https://www.imdb.com/title/${_movieDetailController.movie.imdbId}");
                                     if (await canLaunchUrl(url)) {
