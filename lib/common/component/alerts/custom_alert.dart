@@ -30,8 +30,9 @@ class CustomAlert{
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(message,style: const TextStyle(color: CustomColors.light, fontSize: 18),),
+          Text(message,style: const TextStyle(color: CustomColors.light, fontSize: 18),textAlign: TextAlign.center,),
         ],
       ),
       backgroundColor: CustomColors.darkNavy,

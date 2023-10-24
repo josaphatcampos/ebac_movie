@@ -27,20 +27,20 @@ class CustomInnerAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           onPressed: (){Navigator.of(context).pop();}, icon: const Icon(Icons.chevron_left)
       ),
-      actions: [
-        IconButton(
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                      side: BorderSide(color: CustomColors.light),
-                    )
-                )
-            ),
-            onPressed: (){}, icon: const Icon(Icons.search)
-        ),
-      ],
+      // actions: [
+      //   IconButton(
+      //       style: ButtonStyle(
+      //           backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+      //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      //               const RoundedRectangleBorder(
+      //                 borderRadius: BorderRadius.all(Radius.circular(12)),
+      //                 side: BorderSide(color: CustomColors.light),
+      //               )
+      //           )
+      //       ),
+      //       onPressed: (){}, icon: const Icon(Icons.search)
+      //   ),
+      // ],
     );
   }
 

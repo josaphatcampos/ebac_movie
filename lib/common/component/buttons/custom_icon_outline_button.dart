@@ -28,7 +28,7 @@ class CustomIconOutlineButton extends StatelessWidget {
                 )
             )
         ),
-        onPressed: ()=>function, icon:  Icon(iconData, size: iconSIze,)
+        onPressed: ()=>function(), icon:  Icon(iconData, size: iconSIze,)
     );
   }
 }

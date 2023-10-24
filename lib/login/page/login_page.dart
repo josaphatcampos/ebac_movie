@@ -47,121 +47,126 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-                color: CustomColors.darkNavy,
-                image: DecorationImage(
-                    image: AssetImage(CustomImages.loginBg), fit: BoxFit.cover)
-                // gradient: LinearGradient(
-                //   begin: Alignment.topCenter,
-                //   end: Alignment.bottomCenter,
-                //   colors: [
-                //     CustomColors.darkPurple,
-                //     CustomColors.darkNavy,
-                //   ]
-                // )
-                ),
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.all(CustomValues.paddingBorder),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    const SizedBox(
-                      height: 1,
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                    color: CustomColors.darkNavy,
+                    image: DecorationImage(
+                        image: AssetImage(CustomImages.loginBg), fit: BoxFit.cover)
+                    // gradient: LinearGradient(
+                    //   begin: Alignment.topCenter,
+                    //   end: Alignment.bottomCenter,
+                    //   colors: [
+                    //     CustomColors.darkPurple,
+                    //     CustomColors.darkNavy,
+                    //   ]
+                    // )
                     ),
-                    SizedBox(
-                        width: double.infinity,
-                        child: Image.asset(
-                          CustomImages.logo,
-                        )),
-                    Column(
+                child: SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.all(CustomValues.paddingBorder),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        const Text("Olá bem-vindo!"),
-                        SizedBox(
-                          height: CustomValues.marginComponent,
+                        const SizedBox(
+                          height: 1,
                         ),
-                        CustomButton(
-                            title: 'Login',
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  backgroundColor: CustomColors.darkNavy,
-                                  title: Center(
-                                    child: Lottie.asset(CustomAnimation.ticket,
-                                        height: 75,
-                                        fit: BoxFit.contain,
-                                        controller:
-                                            _controller.animationController,
-                                        onLoaded: (composition) {
-                                      _controller.animationController
-                                        ..duration = composition.duration
-                                        ..repeat();
-                                    }),
-                                  ),
-                                  content: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      CustomTextInput(
-                                          controller:
-                                              _controller.usercontroller,
-                                          label: 'Usuário',
-                                          placeholder: 'Digite seu usuário'),
-                                      SizedBox(
-                                        height: CustomValues.marginComponent,
-                                      ),
-                                      CustomTextInput(
-                                          controller:
-                                              _controller.passcontroller,
-                                          label: 'Senha',
-                                          placeholder: 'Digite sua senha',
-                                          isObscured: true),
-                                      SizedBox(
-                                        height: CustomValues.marginComponent,
-                                      ),
-                                      ValueListenableBuilder(
-                                        valueListenable:
-                                            _controller.isEnableLogin,
-                                        builder: (context, value, child) {
-                                          return CustomButton(
-                                            title: "Entrar",
-                                            onPressed: !value
-                                                ? null
-                                                : () async {
-                                                    Navigator.of(context).pop();
-                                                    goToHome();
-                                                  },
-                                            color: CustomColors.lightNavy,
-                                          );
-                                        },
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
                         SizedBox(
-                          height: CustomValues.marginComponent,
-                        ),
-                        CustomOutlineButton(
-                            title: 'Registrar',
-                            onPressed: () {
-                              debugPrint('action');
-                            }),
+                            width: double.infinity,
+                            child: Image.asset(
+                              CustomImages.logo,
+                            )),
+                        Column(
+                          children: [
+                            const Text("Olá bem-vindo!"),
+                            SizedBox(
+                              height: CustomValues.marginComponent,
+                            ),
+                            CustomButton(
+                                title: 'Login',
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      backgroundColor: CustomColors.darkNavy,
+                                      title: Center(
+                                        child: Lottie.asset(CustomAnimation.ticket,
+                                            height: 75,
+                                            fit: BoxFit.contain,
+                                            controller:
+                                                _controller.animationController,
+                                            onLoaded: (composition) {
+                                          _controller.animationController
+                                            ..duration = composition.duration
+                                            ..repeat();
+                                        }),
+                                      ),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          CustomTextInput(
+                                              controller:
+                                                  _controller.usercontroller,
+                                              label: 'Usuário',
+                                              placeholder: 'Digite seu usuário'),
+                                          SizedBox(
+                                            height: CustomValues.marginComponent,
+                                          ),
+                                          CustomTextInput(
+                                              controller:
+                                                  _controller.passcontroller,
+                                              label: 'Senha',
+                                              placeholder: 'Digite sua senha',
+                                              isObscured: true),
+                                          SizedBox(
+                                            height: CustomValues.marginComponent,
+                                          ),
+                                          ValueListenableBuilder(
+                                            valueListenable:
+                                                _controller.isEnableLogin,
+                                            builder: (context, value, child) {
+                                              return CustomButton(
+                                                title: "Entrar",
+                                                onPressed: !value
+                                                    ? null
+                                                    : () async {
+                                                        Navigator.of(context).pop();
+                                                        goToHome();
+                                                      },
+                                                color: CustomColors.lightNavy,
+                                              );
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
+                            SizedBox(
+                              height: CustomValues.marginComponent,
+                            ),
+                            // CustomOutlineButton(
+                            //     title: 'Registrar',
+                            //     onPressed: () {
+                            //       debugPrint('action');
+                            //     }),
+                          ],
+                        )
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+              LoadingComponent(isLoading: _controller.isLoading)
+            ],
           ),
-          LoadingComponent(isLoading: _controller.isLoading)
-        ],
+        ),
       ),
     );
   }

@@ -145,7 +145,9 @@ class MovieCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            function();
+                          },
                           child: Row(
                             children: [
                               Container(
