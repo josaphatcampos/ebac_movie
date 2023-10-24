@@ -6,5 +6,6 @@ class CustomAnimation{
   static const String pulsePlayer = 'assets/animations/pulse.json';
   static const String clack = 'assets/animations/clack.json';
   static const String ticket = 'assets/animations/ticket.json';
+  static const String matrix = 'assets/animations/matrix.json';
 
 }

@@ -76,7 +76,7 @@ class MovieCard extends StatelessWidget {
                     duration: const Duration(seconds: 1),
                     opacity: value? 1 : 0,
                     child: Text(
-                      movie.releaseDate.substring(0, 4),
+                        movie.releaseDate.isNotEmpty?movie.releaseDate.substring(0, 4):'',
                       style:
                       Theme.of(context).textTheme.titleMedium!.copyWith(
                           shadows: [

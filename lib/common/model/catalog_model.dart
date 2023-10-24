@@ -18,7 +18,7 @@ class Catalog {
   }
 
   factory Catalog.fromMap(Map<String, dynamic> json) {
-    int page = json['page'];
+    int page = json['page'] ?? 0;
     List<Movie> movies = <Movie>[];
     if (json['results'] != null) {
       json['results'].forEach((v) {

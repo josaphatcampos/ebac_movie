@@ -15,10 +15,12 @@ class Utils {
 
   static const String movieApiBaseUrl = 'api.themoviedb.org';
   static const String movieApiMovieUrl = '/3/movie';
+  static const String movieApiSearchBaseUrl = '/3/search';
   static const String movieApiPopularUrl = '$movieApiMovieUrl/popular';
   static const String movieApiTopUrl = '$movieApiMovieUrl/top_rated';
   static const String movieApiUpcomingUrl = '$movieApiMovieUrl/upcoming';
   static const String movieApiNowInTheatUrl = '$movieApiMovieUrl/now_playing';
+  static const String movieApiSearchUrl = '/3/search/movie';
   static const String movieApiImageUrl = 'https://image.tmdb.org/t/p/w500';
   static const String movieApiOriginalUrl ='https://image.tmdb.org/t/p/original';
 

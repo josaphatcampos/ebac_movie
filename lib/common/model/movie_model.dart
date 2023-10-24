@@ -94,12 +94,12 @@ class Movie {
       originalLanguage: map['original_language'] ?? '',
       originalTitle: map['original_title'] ?? '',
       overview: map['overview'] ?? '',
-      popularity: double.parse("${map['popularity']}") ?? 0.0,
+      popularity: map['popularity'] != null ? double.parse("${map['popularity']}") : 0.0,
       posterPath: map['poster_path'] ?? '',
       releaseDate: map['release_date'] ?? '',
       title: map['title'] ?? '',
       video: map['video'] ?? false,
-      voteAverage: double.parse("${map['vote_average']}") ?? 0.0,
+      voteAverage: map['vote_average'] != null ? double.parse("${map['vote_average']}") : 0.0,
       voteCount: map['vote_count'] ?? 0,
     );
   }

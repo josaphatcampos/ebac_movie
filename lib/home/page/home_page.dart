@@ -1,15 +1,17 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pre_projeto/common/component/menu/custom_drawer_menu.dart';
 import 'package:pre_projeto/common/sistem/values.dart';
 import 'package:pre_projeto/home/controller/home_controller.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../common/component/app_bars/custom_app_bar.dart';
 import '../../common/component/cards/movie_card.dart';
 import '../../common/component/lists/movie_list.dart';
 import '../../common/component/loading_component.dart';
+import '../../common/sistem/animaitons.dart';
 import '../../common/sistem/colors.dart';
 import '../../common/sistem/images.dart';
 import '../../common/sistem/routes.dart';
@@ -54,13 +56,16 @@ class _HomePageState extends State<HomePage> {
               ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: CustomAppBar(),
+        appBar: CustomAppBar(
+          externController: _homeController,
+        ),
         drawer: CustomDrawerMenu(),
         body: Padding(
           padding: EdgeInsets.only(
               right: CustomValues.paddingInnerBorder,
               left: CustomValues.paddingInnerBorder),
           child: Stack(
+            fit: StackFit.expand,
             children: [
               SingleChildScrollView(
                 child: Column(
@@ -92,11 +97,13 @@ class _HomePageState extends State<HomePage> {
                                 showBottonRatting: true,
                                 showTitle: true,
                                 function: () {
-                                  Map<String,dynamic> params = {
-                                    CustomValues.movieIdParam : e.id,
-                                    CustomValues.tagParam : tag
+                                  Map<String, dynamic> params = {
+                                    CustomValues.movieIdParam: e.id,
+                                    CustomValues.tagParam: tag
                                   };
-                                  Navigator.of(context).pushNamed(Routes.movieDetail, arguments: params);
+                                  Navigator.of(context).pushNamed(
+                                      Routes.movieDetail,
+                                      arguments: params);
                                 },
                                 tag: tag,
                               );
@@ -179,6 +186,112 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+              ValueListenableBuilder(
+                valueListenable: _homeController.searchterm,
+                builder: (context, value, child) {
+                  return
+                    Stack(
+                      children: [
+                        Visibility(
+                          visible: value.isNotEmpty,
+                          child: Container(
+                            color: Colors.black45,
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                              child:
+                              GridView.count(
+                                crossAxisCount: 2,
+                                childAspectRatio: 9 / 16,
+                                children: _homeController.searchMovies.movies
+                                    .map((mov) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        MovieCard(
+                                            imageUrl: mov.posterPath,
+                                            showTitle: false,
+                                            showBottonRatting: false,
+                                            function: () {
+                                              Map<String, dynamic> params = {
+                                                CustomValues.movieIdParam:
+                                                mov.id,
+                                                CustomValues.tagParam:
+                                                "search${mov.id}"
+                                              };
+                                              Navigator.of(context).pushNamed(
+                                                  Routes.movieDetail,
+                                                  arguments: params);
+                                            },
+                                            movie: mov,
+                                            rounded: 8,
+                                            tag: "search${mov.id}"),
+                                        Text(
+                                          mov.title,
+                                          maxLines: 1,
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: _homeController.searchMovies.movies.isEmpty && value.isNotEmpty,
+                          child: Column(
+                            crossAxisAlignment:
+                            CrossAxisAlignment.center,
+                            children: [
+                              Lottie.asset(
+                                CustomAnimation.matrix,
+                                width: double.infinity,
+                                fit: BoxFit.contain,
+                              ),
+                              const Text(
+                                "Ops. Falha na Matrix!\n não encontramos sua pesquisa.",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                    ;
+                },
+              ),
+
+              // ValueListenableBuilder(
+              //     valueListenable: _homeController.isFindSearch,
+              //     builder: (context, value, child) {
+              //       return
+              //       Visibility(
+              //         visible: !value,
+              //         child: Column(
+              //           crossAxisAlignment:
+              //           CrossAxisAlignment.center,
+              //           children: [
+              //             Lottie.asset(
+              //               CustomAnimation.matrix,
+              //               width: double.infinity,
+              //               fit: BoxFit.contain,
+              //             ),
+              //             const Text(
+              //               "Ops. Falha na Matrix!\n não encontramos sua pesquisa.",
+              //               style: TextStyle(
+              //                   fontSize: 18,
+              //                   fontWeight: FontWeight.bold),
+              //               textAlign: TextAlign.center,
+              //             ),
+              //           ],
+              //         ),
+              //       );
+              //     }),
               LoadingComponent(isLoading: _homeController.isLoading)
             ],
           ),
